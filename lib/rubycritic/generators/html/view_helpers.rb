@@ -25,6 +25,10 @@ module Rubycritic
       file_path("#{location.pathname.sub_ext('.html')}#L#{location.line}")
     end
 
+    def sentence(str)
+      str.split(/(?=[A-Z])/).join(" ")
+    end
+
     private
 
     def relative_path(file)

@@ -1,7 +1,13 @@
-.group:after {
-  content: '';
-  display: table;
-  clear: both;
+.main-row {
+  margin-bottom: 20px;
+}
+
+ul.nav.nav-tabs {
+  margin-bottom: 10px;
+}
+
+#source .filename {
+  font-weight: bold;
 }
 
 .chart-container {
@@ -12,6 +18,19 @@
 .floatThead-container {
   box-shadow: 0 3px 4px -2px rgb(224, 223, 223);
   background: #FFF;
+}
+
+.navbar .nav>li>a {
+  font-size: 12px;
+  line-height: 24px;
+}
+
+table.table tr td {
+  line-height: 30px;
+}
+
+table.table tbody td a {
+  color: #79a736;
 }
 
 .table-code_index .circle {
@@ -81,19 +100,13 @@
   background-color: #FF4136;
 }
 
-.file-header {
-  position: relative;
-  padding: 0 0 10px 2rem;
-  border-bottom: 1px solid silver;
-}
-
 .file-header .circle {
+  margin-top: 20px;
   width: 50px;
   height: 50px;
 }
 
 .file-header .circled-text {
-  float: left;
   line-height: 50px;
   font-size: 32px;
 }
@@ -145,35 +158,37 @@
   white-space: nowrap;
 }
 
-.file-header.rated .file-stats {
-  margin-left: 68px;
-}
-
-.file-header.rated .file-name {
-  margin-left: 20px;
-}
-
 .file-header.unrated .rating {
   display: none;
 }
 
-.smells-toggle-button {
+.btn.smells-toggle-button,
+.btn.smells-toggle-button:hover,
+.btn.smells-toggle-button:active,
+.btn.smells-toggle-button:focus {
   position: absolute;
   right: 64px;
-  bottom: -17px;
-  background: #FFF;
-}
-
-.smells-toggle-button:hover,
-.smells-toggle-button:active,
-.smells-toggle-button:focus {
   background: #FFF;
   text-decoration: none;
   outline: none;
+  border: 1px solid silver;
+}
+
+.btn.smells-toggle-button .toggle-on {
+  display: block;
+}
+.btn.smells-toggle-button .toggle-off {
+  display: none;
+}
+
+.btn.smells-toggle-button.active .toggle-on {
+  display: none;
+}
+.btn.smells-toggle-button.active .toggle-off {
+  display: block;
 }
 
 .smells {
-  font-family: "Droid Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
   margin: 2px 0 22px 0;
   padding-left: 0;
   border: 1px solid #000;

@@ -1,38 +1,111 @@
-<div class="file-header group <%= Config.suppress_ratings ? 'unrated' : 'rated' %>">
-  <span class="rating rating-<%= @analysed_module.rating.to_s.downcase %> circled-text circle">
-    <%= @analysed_module.rating %>
-  </span>
-  <h2 class="file-name"><%= @analysed_module.name %></h2>
-
-  <span class="file-committed-at">
-    <% if @analysed_module.committed_at %>
-      Updated <%= timeago_tag(@analysed_module.committed_at) %>
-    <% else %>
-      Never committed
-    <% end %>
-  </span>
-
-  <div class="file-stats group">
-    <div class="file-stat">
-      <%= @analysed_module.complexity %> complexity
-    </div>
-    <div class="file-stat">
-      <%= @analysed_module.complexity_per_method %> complexity per method
-    </div>
-    <div class="file-stat">
-      <%= @analysed_module.churn %> churn
-    </div>
-    <div class="file-stat">
-      <%= @analysed_module.methods_count %> methods
-    </div>
-    <div class="file-stat">
-      <%= @analysed_module.duplication %> duplication
-    </div>
+<div class="row main-row">
+  <div class="col-md-1 file-header <%= Config.suppress_ratings ? 'unrated' : 'rated' %>">
+    <span class="rating rating-<%= @analysed_module.rating.to_s.downcase %> circled-text circle">
+      <%= @analysed_module.rating %>
+    </span>
   </div>
+  <div class="col-md-10">
+    <div class="row">
+      <h2>
+        <%= @analysed_module.name %>
+        <small>
+          <% if @analysed_module.committed_at %>
+            Updated <%= timeago_tag(@analysed_module.committed_at) %>
+          <% else %>
+            Never committed
+          <% end %>
+        </small>
+      </h2>
+    </div>
 
-  <% if @analysed_module.smells? %>
-    <button id="js-toggle-smells" class="smells-toggle-button btn btn-sm btn-link">Toggle Smells</button>
-  <% end %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= @analysed_module.complexity %> complexity
+      </div>
+      <div class="col-md-3">
+        <%= @analysed_module.complexity_per_method %> complexity per method
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <%= @analysed_module.churn %> churn
+      </div>
+      <div class="col-md-3">
+        <%= @analysed_module.methods_count %> methods
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <%= @analysed_module.duplication %> duplication
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code"><%= yield %></code>
+<div class="row">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#issues" data-toggle="tab" aria-expanded="true">Issues</a></li>
+    <li class=""><a href="#source" data-toggle="tab" aria-expanded="false">Source</a></li>
+    <li class=""><a href="#foo" data-toggle="tab" aria-expanded="false">FooBar</a></li>
+  </ul>
+</div>
+
+<div class="row">
+  <div class="tab-content">
+    <div class="tab-pane fade active in" id="issues">
+      <h3><%=@analysed_module.smells.length %> issues</h3>
+      <div class="col-md-9">
+        <% @analysed_module.smells.group_by(&:type).each do |type, smells| %>
+          <div class="panel panel-default">
+            <div class="panel-heading"><%= sentence(type) %></div>
+            <div class="panel-body">
+              <% smells.each do |smell| %>
+                <ul class="list-unstyled">
+                  <li>
+                    <%= "#{smell.context} #{smell.message}" %>:
+                    <ul>
+                      <% smell.locations.each_with_index do |loc, idx| %>
+                        <li>
+                          <a class="js-source-link" href="<%= smell_location_path(loc) %>">
+                            <%= loc.pathname %>:<%= loc.line %>
+                          </a>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </li>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="tab-pane fade in" id="source">
+      <div class="row">
+        <div class="col-md-10 filename">
+          <p><%= @analysed_module.pathname %></p>
+        </div>
+        <div class="col-md-2">
+          <% if @analysed_module.smells? %>
+            <button type="button" id="js-toggle-smells" class="smells-toggle-button btn btn-link btn-xs active pull-right" data-toggle="button" aria-pressed="true" autocomplete="off">
+              <span class="toggle-on">Show smells</span>
+              <span class="toggle-off">Hide smells</span>
+            </button>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <code class="prettyprint linenums lang-ruby file-code js-file-code"><%= yield %></code>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade in" id="foo">
+    </div>
+  </div>
+</div>
