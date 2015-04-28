@@ -1,7 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
 .group:after {
   content: '';
   display: table;
   clear: both;
+}
+
+html {
+  overflow-y: scroll;
+  font-family: "Droid Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #00adc4;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 1px solid;
+}
+
+a:visited {
+  color: #4E6072;
+}
+
+.container {
+  width: 100%;
+  max-width: 80em;
+  margin: 0 auto;
+}
+
+.project-header {
+  padding: 1em 0 1em 0;
+  margin-bottom: 2em;
+  background-color: #F2F1EE;
+}
+
+.project-header .container {
+  padding: 0 2rem;
+}
+
+.logo {
+  float: left;
+  margin: 0;
+}
+
+a.logo-link {
+  color: black;
+}
+
+.project-nav {
+  float: left;
+  margin-left: 4rem;
+  line-height: 2.5em;
+}
+
+a.project-nav-item {
+  color: #323333;
+  margin-right: 3rem;
+}
+
+a.project-nav-item:hover {
+  border-bottom: 1px solid;
 }
 
 .chart-container {
@@ -9,27 +77,40 @@
   margin: 0 auto;
 }
 
-.floatThead-container {
-  box-shadow: 0 3px 4px -2px rgb(224, 223, 223);
-  background: #FFF;
+.index-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.table-code_index .circle {
+.index-table th {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid silver;
+  font-size: 1.55em;
+  font-weight: normal;
+  background-color: white;
+}
+
+.floatThead-container {
+  box-shadow: 0 3px 4px -2px rgb(224, 223, 223);
+}
+
+.index-table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.index-table tr:hover {
+  background-color: #e9fafc;
+}
+
+.index-table .circle {
   width: 28px;
   height: 28px;
 }
 
-.table-code_index .circled-text {
+.index-table .circled-text {
   display: inline-block;
   line-height: 28px;
-}
-
-.table-code_index .numeric-cell {
-  text-align: right;
-}
-
-.table-code_index .centered-cell {
-  text-align: center;
 }
 
 .tablesorter-headerAsc .tablesorter-header-inner:after,
@@ -52,6 +133,30 @@
   cursor: pointer;
 }
 
+.index-table td, .index-table th {
+  padding: 1rem 2rem;
+}
+
+.index-table .numeric-cell {
+  text-align: right;
+}
+
+.index-table .centered-cell {
+  text-align: center;
+}
+
+.button {
+  margin: 0;
+  padding: 0.5em 1em;
+  border: 1px solid black;
+  font-size: 0.9em;
+  border-radius: 0.2em;
+  cursor: pointer;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
 .circle {
   display: block;
   border-radius: 50%;
@@ -69,7 +174,7 @@
   cursor: default;
 }
 
-.table-smells_index .circled-text {
+.smells-index-table .circled-text {
   font-size: 10px;
 }
 
@@ -161,15 +266,12 @@
   position: absolute;
   right: 64px;
   bottom: -17px;
-  background: #FFF;
+  border-color: silver;
+  background-color: #EEEBE9;
 }
 
-.smells-toggle-button:hover,
-.smells-toggle-button:active,
-.smells-toggle-button:focus {
-  background: #FFF;
-  text-decoration: none;
-  outline: none;
+.smells-toggle-button:hover {
+  background-color: #D1CFCD;
 }
 
 .smells {
