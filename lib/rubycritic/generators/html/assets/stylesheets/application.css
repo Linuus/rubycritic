@@ -131,33 +131,6 @@ table.table tbody td a {
   background-color: #FF4136;
 }
 
-.file-name {
-  float: left;
-  margin: 0;
-  line-height: 50px;
-  font-weight: normal;
-}
-
-.file-committed-at {
-  float: left;
-  margin: 20px 0 0 28px;
-  font-size: 13px;
-  color: #666666;
-}
-
-.file-stats {
-  clear: both;
-  width: 300px;
-}
-
-.file-stat {
-  float: left;
-  margin: 3px;
-  width: 130px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
 .file-header.unrated .rating {
   display: none;
 }
@@ -166,8 +139,6 @@ table.table tbody td a {
 .btn.smells-toggle-button:hover,
 .btn.smells-toggle-button:active,
 .btn.smells-toggle-button:focus {
-  position: absolute;
-  right: 64px;
   background: #FFF;
   text-decoration: none;
   outline: none;

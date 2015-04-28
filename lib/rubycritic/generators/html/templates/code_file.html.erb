@@ -86,21 +86,23 @@
 
     <div class="tab-pane fade in" id="source">
       <div class="row">
-        <div class="col-md-10 filename">
-          <p><%= @analysed_module.pathname %></p>
-        </div>
-        <div class="col-md-2">
-          <% if @analysed_module.smells? %>
-            <button type="button" id="js-toggle-smells" class="smells-toggle-button btn btn-link btn-xs active pull-right" data-toggle="button" aria-pressed="true" autocomplete="off">
-              <span class="toggle-on">Show smells</span>
-              <span class="toggle-off">Hide smells</span>
-            </button>
-          <% end %>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-12">
-          <code class="prettyprint linenums lang-ruby file-code js-file-code"><%= yield %></code>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <span class="text-lowercase"><%= @analysed_module.pathname %></span>
+              <% if @analysed_module.smells? %>
+                <button type="button" id="js-toggle-smells" class="smells-toggle-button btn btn-link btn-xs active pull-right" data-toggle="button" aria-pressed="true" autocomplete="off">
+                  <span class="toggle-on">Show smells</span>
+                  <span class="toggle-off">Hide smells</span>
+                </button>
+              <% end %>
+            </div>
+            <div class="panel-body">
+              <code class="prettyprint linenums lang-ruby file-code js-file-code"><%= yield %></code>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
